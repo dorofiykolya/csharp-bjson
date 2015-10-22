@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{640AF863-4B80-4DF5-A773-7E1265342495}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BinaryJSON</RootNamespace>
+    <AssemblyName>BinaryJSON</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="JsonFX\About.cs" />
+    <Compile Include="JsonFX\DataReaderProvider.cs" />
+    <Compile Include="JsonFX\DataSerializer.cs" />
+    <Compile Include="JsonFX\DataWriterProvider.cs" />
+    <Compile Include="JsonFX\EcmaScriptIdentifier.cs" />
+    <Compile Include="JsonFX\EcmaScriptWriter.cs" />
+    <Compile Include="JsonFX\IDataReader.cs" />
+    <Compile Include="JsonFX\IDataWriter.cs" />
+    <Compile Include="JsonFX\IJsonSerializable.cs" />
+    <Compile Include="JsonFX\JsonDataReader.cs" />
+    <Compile Include="JsonFX\JsonDataWriter.cs" />
+    <Compile Include="JsonFX\JsonIgnoreAttribute.cs" />
+    <Compile Include="JsonFX\JsonMemberAttribute.cs" />
+    <Compile Include="JsonFX\JsonNameAttribute.cs" />
+    <Compile Include="JsonFX\JsonOptInAttribute.cs" />
+    <Compile Include="JsonFX\JsonReader.cs" />
+    <Compile Include="JsonFX\JsonReaderSettings.cs" />
+    <Compile Include="JsonFX\JsonSerializationException.cs" />
+    <Compile Include="JsonFX\JsonSpecifiedPropertyAttribute.cs" />
+    <Compile Include="JsonFX\JsonToken.cs" />
+    <Compile Include="JsonFX\JsonWriter.cs" />
+    <Compile Include="JsonFX\JsonWriterSettings.cs" />
+    <Compile Include="JsonFX\TypeCoercionUtility.cs" />
+    <Compile Include="JsonFX\XmlDataReader.cs" />
+    <Compile Include="JsonFX\XmlDataWriter.cs" />
+    <Compile Include="Records\BaseTypes.cs" />
+    <Compile Include="Records\Buildings\BuildingLevelRecordBase.cs" />
+    <Compile Include="Records\Buildings\BuildingRecordBase.cs" />
+    <Compile Include="Records\BuildingUnitLevelQuantity.cs" />
+    <Compile Include="Records\BuildingUnitQuantity.cs" />
+    <Compile Include="Records\IdExperience.cs" />
+    <Compile Include="Records\IdLevelCount.cs" />
+    <Compile Include="Records\IdLevelQuantity.cs" />
+    <Compile Include="Records\IdTime.cs" />
+    <Compile Include="Records\IdType.cs" />
+    <Compile Include="Records\Initializations\InitializationRecordBase.cs" />
+    <Compile Include="Records\Initialization\Achievement\AchievementLevelRecord.cs" />
+    <Compile Include="Records\Initialization\Achievement\AchievementRecord.cs" />
+    <Compile Include="Records\Initialization\ArtefactInfoRecord.cs" />
+    <Compile Include="Records\Initialization\Battle\DamageRecord.cs" />
+    <Compile Include="Records\Initialization\Battle\FightDataRecord.cs" />
+    <Compile Include="Records\Initialization\Battle\HeroExpRecord.cs" />
+    <Compile Include="Records\Initialization\Battle\ScoutRequirementRecord.cs" />
+    <Compile Include="Records\Initialization\Battle\SpellActionRecord.cs" />
+    <Compile Include="Records\Initialization\Battle\TriggerRecord.cs" />
+    <Compile Include="Records\Initialization\Buildings\BuildingLevelRecord.cs" />
+    <Compile Include="Records\Initialization\Buildings\BuildingRecord.cs" />
+    <Compile Include="Records\Initialization\Buildings\BuildingsCountPerCCLevelRecord.cs" />
+    <Compile Include="Records\Initialization\Buildings\DefenceUnitRecord.cs" />
+    <Compile Include="Records\Initialization\ChangeNameCostRecord.cs" />
+    <Compile Include="Records\Initialization\Clan\ClanMemberRecord.cs" />
+    <Compile Include="Records\Initialization\Clan\ClanRecord.cs" />
+    <Compile Include="Records\Initialization\Clan\ClanType.cs" />
+    <Compile Include="Records\Initialization\Designations\DesignationsRecord.cs" />
+    <Compile Include="Records\Initialization\DowerChest\CardPriceRecord.cs" />
+    <Compile Include="Records\Initialization\DowerChest\CardRewardInfoRecord.cs" />
+    <Compile Include="Records\Initialization\DowerChest\DowerChestInfoRecord.cs" />
+    <Compile Include="Records\Initialization\FaqRecord.cs" />
+    <Compile Include="Records\Initialization\InitializationRecord.cs" />
+    <Compile Include="Records\Initialization\Items\CreateItemRecord.cs" />
+    <Compile Include="Records\Initialization\Items\ItemPaidRecord.cs" />
+    <Compile Include="Records\Initialization\Items\ItemRecord.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\FightPaidItemRecord.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\MissionBuilding.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\MissionMap.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\MissionRecord.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\MissionsPaidItems.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\MissionUnit.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\PaidItemRecord.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\PaidItemsByMissions.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\PaidItemType.cs" />
+    <Compile Include="Records\Initialization\OfflineCompany\PaidItemUseType.cs" />
+    <Compile Include="Records\Initialization\Rewards\ClansDuelsAttackBonusRecord.cs" />
+    <Compile Include="Records\Initialization\Rewards\ItemByStarRecord.cs" />
+    <Compile Include="Records\Initialization\Rewards\ItemOnStageRecord.cs" />
+    <Compile Include="Records\Initialization\Rewards\PlaceRewardItem.cs" />
+    <Compile Include="Records\Initialization\Rewards\PlaceRewardsRecord.cs" />
+    <Compile Include="Records\Initialization\Rewards\ReffererReward.cs" />
+    <Compile Include="Records\Initialization\Rewards\RewardLevelRecord.cs" />
+    <Compile Include="Records\Initialization\Rewards\RewardRecord.cs" />
+    <Compile Include="Records\Initialization\TestFight\TestFightBuildingLevelsInfo.cs" />
+    <Compile Include="Records\Initialization\TestFight\TestFightCapacityRecord.cs" />
+    <Compile Include="Records\Initialization\TestFight\TestFightInfoRecord.cs" />
+    <Compile Include="Records\Initialization\TestFight\TestFightItemPriceRecord.cs" />
+    <Compile Include="Records\Initialization\TestFight\TestFightMaxItemLevelRecord.cs" />
+    <Compile Include="Records\Initialization\Tournament\MapLocationTrapLimitRecord.cs" />
+    <Compile Include="Records\Initialization\Tournament\TournamentStateInfoRecord.cs" />
+    <Compile Include="Records\Initialization\UnitsItems\UnitItemLevelRecord.cs" />
+    <Compile Include="Records\Initialization\UnitsItems\UnitItemRecord.cs" />
+    <Compile Include="Records\Initialization\Units\UnitLevelRecord.cs" />
+    <Compile Include="Records\Initialization\Units\UnitRecord.cs" />
+    <Compile Include="Records\IShowedInInfoWindow.cs" />
+    <Compile Include="Records\ItemCount.cs" />
+    <Compile Include="Records\ItemQuantity.cs" />
+    <Compile Include="Records\LocationBounds.cs" />
+    <Compile Include="Records\ObjectUnitLevelQuantity.cs" />
+    <Compile Include="Records\Point.cs" />
+    <Compile Include="Records\PointF.cs" />
+    <Compile Include="Records\RequirementItem.cs" />
+    <Compile Include="Records\RequirementType.cs" />
+    <Compile Include="Records\ResearchSummary.cs" />
+    <Compile Include="Records\ShopCategory.cs" />
+    <Compile Include="Records\Shop\ItemShopRecord.cs" />
+    <Compile Include="Records\Size.cs" />
+    <Compile Include="Records\Sounds\SoundsRecord.cs" />
+    <Compile Include="Records\Spells\SpellLevelRecord.cs" />
+    <Compile Include="Records\Spells\SpellRecord.cs" />
+    <Compile Include="Records\Spells\SpellLevelRecordBase.cs" />
+    <Compile Include="Records\Spells\SpellRecordBase.cs" />
+    <Compile Include="Records\Units\UnitLevelRecordBase.cs" />
+    <Compile Include="Records\Units\UnitRecordBase.cs" />
+    <Compile Include="BinaryJSON\Serializations\ArraySerialization.cs" />
+    <Compile Include="BinaryJSON\BinaryJSON.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BinaryJSON\BinaryJSONReader.cs" />
+    <Compile Include="BinaryJSON\Serializations\NullSerialization.cs" />
+    <Compile Include="BinaryJSON\Descriptions\TypeDescription.cs" />
+    <Compile Include="BinaryJSON\Serializations\ObjectSerialization.cs" />
+    <Compile Include="BinaryJSON\Serializations\PrimitiveSerialization.cs" />
+    <Compile Include="BinaryJSON\Serializations\StringSerialization.cs" />
+    <Compile Include="BinaryJSON\Serializations\TypeSerialization.cs" />
+    <Compile Include="BinaryJSON\Descriptions\BinaryValue.cs" />
+    <Compile Include="BinaryJSON\BinaryJSONWriter.cs" />
+    <Compile Include="BinaryJSON\Descriptions\TypeInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Records\Buildings\BuildingLevelRecordBase.cs.meta" />
+    <None Include="Records\Buildings\BuildingRecordBase.cs.meta" />
+    <None Include="Records\Buildings\BuildingRecordMap.cs.meta" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Records\Initialization\Clan\FlagData\" />
+    <Folder Include="Records\Locations\" />
+    <Folder Include="Records\Prefabs\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
