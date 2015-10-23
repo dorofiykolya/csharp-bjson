@@ -31,7 +31,7 @@ namespace BinaryJSON
 
         private void WriteField(BinaryWriter buffer, string value)
         {
-            var bytes = Encoding.UTF8.GetBytes(value);
+            var bytes = Encoding.ASCII.GetBytes(value);
             buffer.Write((int)bytes.Length);
             buffer.Write(bytes);
         }
@@ -58,7 +58,7 @@ namespace BinaryJSON
         private string ReadField(BinaryReader reader)
         {
             var count = reader.ReadInt32();
-            return Encoding.UTF8.GetString(reader.ReadBytes(count));
+            return Encoding.ASCII.GetString(reader.ReadBytes(count));
         }
     }
 }

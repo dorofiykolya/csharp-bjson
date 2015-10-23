@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using JsonFx;
@@ -9,18 +8,6 @@ namespace BinaryJSON
 {
     class Program
     {
-        public class A
-        {
-            public int i = 10;
-            public int j = 11;
-            public string s = "hello";
-            public A a;
-            public string q = null;
-            public byte[] b = { 1, 2, 3 };
-            public string[] bs = { "s", "d" };
-            public List<string> ls = new List<string>() { "ls", "ld" };
-        }
-
         static void Main(string[] args)
         {
             var str = File.ReadAllText("initializationFile.txt");
