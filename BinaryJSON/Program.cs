@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+using JsonFx;
+using Records.Initialization;
 
 namespace BinaryJSON
 {
@@ -19,14 +20,31 @@ namespace BinaryJSON
             public string[] bs = { "s", "d" };
             public List<string> ls = new List<string>() { "ls", "ld" };
         }
+
         static void Main(string[] args)
         {
-            var result = BinaryJSON.Serialization.BinaryJSON.Write(new A { i = 11, j = 12, s = "bb", a = new A() { q = "hello", b = new byte[] { 9, 8 } }, b = new byte[] { 5, 6 }, ls = new List<string>() { "GGG" } });
-            //var result = BinaryJSON.Serialization.BinaryJSON.Write(new List<string>() { "GGG" });
+            var str = File.ReadAllText("initializationFile.txt");
 
-            Console.WriteLine(result);
+            var initialization = JsonReader.Deserialize<InitializationRecord>(str);
+            var bytes = BinaryJSON.Write(initialization);
 
-            var value = Serialization.BinaryJSON.Read<A>(result);
+            var result = BinaryJSON.Read<InitializationRecord>(bytes);
+
+            var json = JsonWriter.Serialize(result);
+            var bjson = JsonWriter.Serialize(initialization);
+
+            var eq = json == bjson;
+
+            var jsonStart = Stopwatch.GetTimestamp();
+            JsonReader.Deserialize<InitializationRecord>(str);
+            var jsonEnd = Stopwatch.GetTimestamp();
+            var bsonStart = Stopwatch.GetTimestamp();
+            BinaryJSON.Read<InitializationRecord>(bytes);
+            var bsonEnd = Stopwatch.GetTimestamp();
+
+            Console.WriteLine("JSON:" + (jsonEnd - jsonStart));
+            Console.WriteLine("BJSON:" + (bsonEnd - bsonStart));
+
             Console.ReadKey();
         }
     }
