@@ -7,6 +7,7 @@ namespace BinaryJSON
     {
         private readonly Dictionary<Type, TypeInfo> _descriptions = new Dictionary<Type, TypeInfo>();
         private readonly TypeSerialization[] _serializations = new TypeSerialization[8];
+        private readonly Dictionary<Type, byte> _binaryValue = new Dictionary<Type, byte>();
         private readonly TypeInfo _nullTypeInfo;
 
         public TypeDescription()
@@ -19,6 +20,29 @@ namespace BinaryJSON
             _serializations[(int)TypeValue.Object] = new ObjectSerialization();
             _serializations[(int)TypeValue.Array] = new ArraySerialization();
             _serializations[(int)TypeValue.List] = new ArraySerialization();
+            _serializations[(int)TypeValue.Dictionary] = new DictionarySerialization();
+
+            _binaryValue.Add(typeof(bool), BinaryValue.BOOLEAN);
+            _binaryValue.Add(typeof(byte), BinaryValue.BYTE);
+            _binaryValue.Add(typeof(sbyte), BinaryValue.SBYTE);
+            _binaryValue.Add(typeof(Int16), BinaryValue.INT16);
+            _binaryValue.Add(typeof(UInt16), BinaryValue.UINT16);
+            _binaryValue.Add(typeof(Int32), BinaryValue.INT32);
+            _binaryValue.Add(typeof(UInt32), BinaryValue.UINT32);
+            _binaryValue.Add(typeof(Int64), BinaryValue.INT64);
+            _binaryValue.Add(typeof(UInt64), BinaryValue.UINT64);
+            _binaryValue.Add(typeof(float), BinaryValue.FLOAT);
+            _binaryValue.Add(typeof(Decimal), BinaryValue.DECIMAL);
+            _binaryValue.Add(typeof(Char), BinaryValue.CHAR);
+            _binaryValue.Add(typeof(Double), BinaryValue.DOUBLE);
+            _binaryValue.Add(typeof(String), BinaryValue.STRING);
+        }
+
+        public byte GetCodeByPrimitiveType(Type type)
+        {
+            byte result;
+            _binaryValue.TryGetValue(type, out result);
+            return result;
         }
 
         public TypeSerialization Get(TypeInfo info)
@@ -46,6 +70,13 @@ namespace BinaryJSON
                 _descriptions.Add(type, result);
             }
             return result;
+        }
+
+        public TypeInfo GetType(object value)
+        {
+            if (value == null) return _nullTypeInfo;
+            Type type = value.GetType();
+            return GetType(type);
         }
     }
 }

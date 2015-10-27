@@ -17,20 +17,20 @@ namespace BinaryJSON
             using (var buffer = new MemoryStream(64))
             {
                 var writer = new BinaryWriter(buffer);
-                WriteToBuffer(GetDescription(value), value, writer);
+                Write(value, writer);
                 return buffer.ToArray();
             }
         }
 
-        private TypeInfo GetDescription(object value)
+        internal void Write(object value, BinaryWriter buffer)
         {
-            Type type = value != null ? value.GetType() : null;
-            return _typeDescriptor.GetType(type);
+            var info = _typeDescriptor.GetType(value);
+            Write(info, value, buffer);
         }
 
-        private void WriteToBuffer(TypeInfo info, object value, BinaryWriter writer)
+        internal void Write(TypeInfo info, object value, BinaryWriter buffer)
         {
-            _typeDescriptor.Get(info).Write(info, writer, value, this);
+            _typeDescriptor.Get(info).Write(info, buffer, value, this);
         }
     }
 }

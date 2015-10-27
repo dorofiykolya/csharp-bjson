@@ -12,7 +12,8 @@ namespace BinaryJSON
         Array,
         Object,
         String,
-        List
+        List,
+        Dictionary
     }
 
     public class TypeInfo
@@ -56,6 +57,7 @@ namespace BinaryJSON
         {
             TypeDescriptions = typeDescription;
             Type = type;
+            Type generic;
             if (type == null)
             {
                 TypeValue = TypeValue.Null;
@@ -76,9 +78,9 @@ namespace BinaryJSON
             {
                 TypeValue = TypeValue.List;
             }
-            else if (typeof(IDictionary).IsAssignableFrom(type))
+            else if (typeof(IDictionary).IsAssignableFrom(type) && ((generic = type.GetGenericArguments()[0]).IsPrimitive || generic == typeof(string)))
             {
-                TypeValue = TypeValue.Object;
+                TypeValue = TypeValue.Dictionary;
             }
             else
             {

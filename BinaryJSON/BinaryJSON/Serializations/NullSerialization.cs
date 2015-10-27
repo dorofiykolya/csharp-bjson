@@ -3,7 +3,7 @@ using System.IO;
 
 namespace BinaryJSON
 {
-    public class NullSerialization : TypeSerialization
+    class NullSerialization : TypeSerialization
     {
         public override void Write(TypeInfo info, BinaryWriter buffer, object value, BinaryJSONWriter binaryJsonWriter)
         {

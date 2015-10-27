@@ -9,7 +9,7 @@ namespace BinaryJSON
 
         public BinaryJSONReader(TypeDescription typeDescriptor = null)
         {
-            _typeDescriptor = typeDescriptor;
+            _typeDescriptor = typeDescriptor ?? new TypeDescription();
         }
 
         public T Read<T>(byte[] value)
@@ -45,11 +45,11 @@ namespace BinaryJSON
                 case BinaryValue.STRING:
                     return _typeDescriptor.Get(TypeValue.String).Read(reader, type, _typeDescriptor, code, this);
                 case BinaryValue.ARRAY:
-                    return _typeDescriptor.Get(TypeValue.Array)
-                        .Read(reader, type, _typeDescriptor, code, this);
+                    return _typeDescriptor.Get(TypeValue.Array).Read(reader, type, _typeDescriptor, code, this);
                 case BinaryValue.OBJECT:
                     return _typeDescriptor.Get(TypeValue.Object).Read(reader, type, _typeDescriptor, code, this);
-                case BinaryValue.DICTIONARY: break; // TODO
+                case BinaryValue.DICTIONARY:
+                    return _typeDescriptor.Get(TypeValue.Dictionary).Read(reader, type, _typeDescriptor, code, this);
             }
             return null;
         }

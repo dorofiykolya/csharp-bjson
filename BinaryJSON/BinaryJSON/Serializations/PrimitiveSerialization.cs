@@ -5,10 +5,6 @@ namespace BinaryJSON
 {
     class PrimitiveSerialization : TypeSerialization
     {
-        public PrimitiveSerialization()
-        {
-        }
-
         public override void Write(TypeInfo info, BinaryWriter buffer, object value, BinaryJSONWriter binaryJsonWriter)
         {
             var type = info.Type;

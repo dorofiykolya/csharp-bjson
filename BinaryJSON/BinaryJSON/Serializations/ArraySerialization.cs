@@ -4,7 +4,7 @@ using System.IO;
 
 namespace BinaryJSON
 {
-    public class ArraySerialization : TypeSerialization
+    class ArraySerialization : TypeSerialization
     {
         public override void Write(TypeInfo info, BinaryWriter buffer, object value, BinaryJSONWriter binaryJsonWriter)
         {
@@ -38,8 +38,7 @@ namespace BinaryJSON
 
                     foreach (var item in enumerable)
                     {
-                        var itemDescription = info.TypeDescriptions.GetType(item != null ? item.GetType() : null);
-                        info.TypeDescriptions.Get(itemDescription).Write(itemDescription, buffer, item, binaryJsonWriter);
+                        binaryJsonWriter.Write(item, buffer);
                     }
                 }
             }

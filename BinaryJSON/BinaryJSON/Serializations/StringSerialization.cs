@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BinaryJSON
 {
-    public class StringSerialization : TypeSerialization
+    class StringSerialization : TypeSerialization
     {
         public StringSerialization()
         {

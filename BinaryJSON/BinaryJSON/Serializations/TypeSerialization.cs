@@ -5,11 +5,6 @@ namespace BinaryJSON
 {
     public class TypeSerialization
     {
-        public TypeSerialization()
-        {
-
-        }
-
         public virtual void Write(TypeInfo info, BinaryWriter buffer, object value, BinaryJSONWriter binaryJsonWriter)
         {
             

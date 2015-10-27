@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using JsonFx;
@@ -31,6 +32,10 @@ namespace BinaryJSON
 
             Console.WriteLine("JSON:" + (jsonEnd - jsonStart));
             Console.WriteLine("BJSON:" + (bsonEnd - bsonStart));
+
+            var dic = new Dictionary<float, string>() {{1.1f, "a"}, {2.0f, "b"}};
+            var dicbyte = BinaryJSON.Write(dic);
+            var dicr = BinaryJSON.Read<Dictionary<float, string>>(dicbyte);
 
             Console.ReadKey();
         }

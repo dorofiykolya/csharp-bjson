@@ -6,10 +6,6 @@ namespace BinaryJSON
 {
     class ObjectSerialization : TypeSerialization
     {
-        public ObjectSerialization()
-        {
-        }
-
         public override void Write(TypeInfo info, BinaryWriter buffer, object value, BinaryJSONWriter binaryJsonWriter)
         {
             if (value == null)
@@ -24,7 +20,7 @@ namespace BinaryJSON
                 {
                     WriteField(buffer, field.Name);
                     var typeInfo = info.TypeDescriptions.GetType(field.FieldType);
-                    info.TypeDescriptions.Get(typeInfo).Write(typeInfo, buffer, field.GetValue(value), binaryJsonWriter);
+                    binaryJsonWriter.Write(typeInfo, field.GetValue(value), buffer);
                 }
             }
         }
@@ -49,7 +45,7 @@ namespace BinaryJSON
                 var value = binaryJsonReader.Read(type, buffer);
                 if (field != null)
                 {
-                    typeDescriptor.GetType(resultType).SetValue(fieldName, result, value);
+                    info.SetValue(fieldName, result, value);
                 }
             }
             return result;
