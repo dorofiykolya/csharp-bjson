@@ -50,10 +50,21 @@ namespace BinaryJSON
                 var value = binaryJsonReader.Read(valueType, buffer);
                 if (result != null)
                 {
-                    result.Add(key, value);
+                    result.Add(key, GetValue(value, valueType));
                 }
             }
             return result;
+        }
+
+        private object GetValue(object value, Type resultType)
+        {
+            if (value == null) return null;
+            var valueType = value.GetType();
+            if (valueType.IsPrimitive || valueType == typeof(string))
+            {
+                value = Convert.ChangeType(value, resultType);
+            }
+            return value;
         }
 
         private bool IsValidDictionary(Type type)
