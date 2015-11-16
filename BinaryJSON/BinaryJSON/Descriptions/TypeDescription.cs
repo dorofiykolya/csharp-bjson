@@ -21,6 +21,7 @@ namespace BinaryJSON
             _serializations[(int)TypeValue.Array] = new ArraySerialization();
             _serializations[(int)TypeValue.List] = new ArraySerialization();
             _serializations[(int)TypeValue.Dictionary] = new DictionarySerialization();
+            _serializations[(int)TypeValue.Enum] = new EnumSerialization();
 
             _binaryValue.Add(typeof(bool), BinaryValue.BOOLEAN);
             _binaryValue.Add(typeof(byte), BinaryValue.BYTE);
@@ -40,9 +41,7 @@ namespace BinaryJSON
 
         public byte GetCodeByPrimitiveType(Type type)
         {
-            byte result;
-            _binaryValue.TryGetValue(type, out result);
-            return result;
+            return _binaryValue[type];
         }
 
         public TypeSerialization Get(TypeInfo info)
@@ -53,6 +52,18 @@ namespace BinaryJSON
         public TypeSerialization Get(TypeValue type)
         {
             return _serializations[(int)type];
+        }
+
+        public TypeSerialization Get(byte typeCode)
+        {
+            for (int i = 0; i < _serializations.Length; i++)
+            {
+                if (_serializations[i].AvailableTypeCode(typeCode))
+                {
+                    return _serializations[i];
+                }
+            }
+            return null;
         }
 
         public TypeSerialization Get(Type type)

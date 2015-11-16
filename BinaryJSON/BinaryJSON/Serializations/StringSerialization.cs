@@ -6,10 +6,6 @@ namespace BinaryJSON
 {
     class StringSerialization : TypeSerialization
     {
-        public StringSerialization()
-        {
-        }
-
         public override void Write(TypeInfo info, BinaryWriter buffer, object value, BinaryJSONWriter binaryJsonWriter)
         {
             if (value == null)
@@ -30,6 +26,11 @@ namespace BinaryJSON
             var count = buffer.ReadInt32();
             var bytes = buffer.ReadBytes(count);
             return Encoding.UTF8.GetString(bytes);
+        }
+
+        public override bool AvailableTypeCode(byte code)
+        {
+            return code == BinaryValue.STRING;
         }
     }
 }

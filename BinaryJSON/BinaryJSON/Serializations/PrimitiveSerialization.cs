@@ -227,5 +227,27 @@ namespace BinaryJSON
             }
             return null;
         }
+
+        public override bool AvailableTypeCode(byte code)
+        {
+            switch (code)
+            {
+                case BinaryValue.BYTE:
+                case BinaryValue.SBYTE:
+                case BinaryValue.INT16:
+                case BinaryValue.UINT16:
+                case BinaryValue.INT32:
+                case BinaryValue.UINT32:
+                case BinaryValue.INT64:
+                case BinaryValue.UINT64:
+                case BinaryValue.FLOAT:
+                case BinaryValue.BOOLEAN:
+                case BinaryValue.DOUBLE:
+                case BinaryValue.DECIMAL:
+                case BinaryValue.CHAR:
+                    return true;
+            }
+            return false;
+        }
     }
 }

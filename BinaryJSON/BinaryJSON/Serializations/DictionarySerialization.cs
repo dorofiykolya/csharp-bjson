@@ -21,6 +21,7 @@ namespace BinaryJSON
                 buffer.Write((int)count);
 
                 var keyType = dictionary.GetType().GetGenericArguments()[0];
+                if (keyType.IsEnum) keyType = keyType.GetEnumUnderlyingType();
                 var code = info.TypeDescriptions.GetCodeByPrimitiveType(keyType);
                 buffer.Write(code);
 
@@ -70,7 +71,7 @@ namespace BinaryJSON
         private bool IsValidDictionary(Type type)
         {
             var genericKey = type.GetGenericArguments()[0];
-            return genericKey.IsPrimitive || genericKey == typeof(string);
+            return genericKey.IsPrimitive || genericKey == typeof(string) || genericKey.IsEnum;
         }
 
         private void WriteField(object key, BinaryWriter writer, byte code)
@@ -160,6 +161,11 @@ namespace BinaryJSON
                     return Encoding.ASCII.GetString(bytes);
             }
             throw new Exception("do not support type");
+        }
+
+        public override bool AvailableTypeCode(byte code)
+        {
+            return code == BinaryValue.DICTIONARY;
         }
     }
 }

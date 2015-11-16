@@ -56,5 +56,10 @@ namespace BinaryJSON
             var count = reader.ReadInt32();
             return Encoding.ASCII.GetString(reader.ReadBytes(count));
         }
+
+        public override bool AvailableTypeCode(byte code)
+        {
+            return code == BinaryValue.OBJECT;
+        }
     }
 }

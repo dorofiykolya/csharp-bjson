@@ -20,5 +20,6 @@
         public const byte ARRAY = 16;
         public const byte NULL = 17;
         public const byte DICTIONARY = 18;
+        public const byte ENUM = 19;
     }
 }

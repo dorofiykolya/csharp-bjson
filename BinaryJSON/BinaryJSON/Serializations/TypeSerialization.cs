@@ -14,5 +14,10 @@ namespace BinaryJSON
         {
             return null;
         }
+
+        public virtual bool AvailableTypeCode(byte code)
+        {
+            return false;
+        }
     }
 }

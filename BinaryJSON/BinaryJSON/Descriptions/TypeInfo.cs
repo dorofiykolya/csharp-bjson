@@ -13,7 +13,8 @@ namespace BinaryJSON
         Object,
         String,
         List,
-        Dictionary
+        Dictionary,
+        Enum
     }
 
     public class TypeInfo
@@ -48,6 +49,7 @@ namespace BinaryJSON
 
         public readonly TypeDescription TypeDescriptions;
         public readonly Type Type;
+        public readonly Type EnumUnderlyingType;
         public readonly TypeValue TypeValue;
         public readonly FieldInfo[] Fields;
 
@@ -70,6 +72,11 @@ namespace BinaryJSON
             {
                 TypeValue = TypeValue.Array;
             }
+            else if (type.IsEnum)
+            {
+                TypeValue = TypeValue.Enum;
+                EnumUnderlyingType = type.GetEnumUnderlyingType();
+            }
             else if (type == typeof(string))
             {
                 TypeValue = TypeValue.String;
@@ -78,7 +85,7 @@ namespace BinaryJSON
             {
                 TypeValue = TypeValue.List;
             }
-            else if (typeof(IDictionary).IsAssignableFrom(type) && ((generic = type.GetGenericArguments()[0]).IsPrimitive || generic == typeof(string)))
+            else if (typeof(IDictionary).IsAssignableFrom(type) && ((generic = type.GetGenericArguments()[0]).IsPrimitive || generic.IsEnum || generic == typeof(string)))
             {
                 TypeValue = TypeValue.Dictionary;
             }

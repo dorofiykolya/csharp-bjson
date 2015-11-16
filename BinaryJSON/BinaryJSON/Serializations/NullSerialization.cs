@@ -14,5 +14,10 @@ namespace BinaryJSON
         {
             return null;
         }
+
+        public override bool AvailableTypeCode(byte code)
+        {
+            return code == BinaryValue.NULL;
+        }
     }
 }

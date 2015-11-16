@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryJSON\Serializations\DictionarySerialization.cs" />
+    <Compile Include="BinaryJSON\Serializations\EnumSerialization.cs" />
     <Compile Include="Test\JsonFX\About.cs" />
     <Compile Include="Test\JsonFX\DataReaderProvider.cs" />
     <Compile Include="Test\JsonFX\DataSerializer.cs" />

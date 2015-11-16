@@ -69,5 +69,10 @@ namespace BinaryJSON
             }
             return result;
         }
+
+        public override bool AvailableTypeCode(byte code)
+        {
+            return code == BinaryValue.ARRAY;
+        }
     }
 }
