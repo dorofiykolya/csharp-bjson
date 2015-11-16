@@ -21,7 +21,7 @@ namespace BinaryJSON
                 buffer.Write((int)count);
 
                 var keyType = dictionary.GetType().GetGenericArguments()[0];
-                if (keyType.IsEnum) keyType = keyType.GetEnumUnderlyingType();
+                if (keyType.IsEnum) keyType = Enum.GetUnderlyingType(keyType);
                 var code = info.TypeDescriptions.GetCodeByPrimitiveType(keyType);
                 buffer.Write(code);
 

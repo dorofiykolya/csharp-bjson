@@ -75,7 +75,7 @@ namespace BinaryJSON
             else if (type.IsEnum)
             {
                 TypeValue = TypeValue.Enum;
-                EnumUnderlyingType = type.GetEnumUnderlyingType();
+                EnumUnderlyingType = Enum.GetUnderlyingType(type);
             }
             else if (type == typeof(string))
             {

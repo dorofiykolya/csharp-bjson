@@ -16,7 +16,7 @@ namespace BinaryJSON
         public override object Read(BinaryReader buffer, Type resultType, TypeDescription typeDescriptor, byte code,
             BinaryJSONReader binaryJsonReader)
         {
-            var value = binaryJsonReader.Read(resultType.GetEnumUnderlyingType(), buffer);
+            var value = binaryJsonReader.Read(Enum.GetUnderlyingType(resultType), buffer);
             var result = Enum.ToObject(resultType, value);
             return result;
         }
