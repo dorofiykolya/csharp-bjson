@@ -39,11 +39,14 @@ namespace BinaryJSON
             var count = buffer.ReadInt32();
             var keyCode = buffer.ReadByte();
             IDictionary result = null;
+            Type keyType = null;
             Type valueType = null;
             if (IsValidDictionary(resultType))
             {
                 result = (IDictionary)Activator.CreateInstance(resultType);
-                valueType = resultType.GetGenericArguments()[1];
+                var args = resultType.GetGenericArguments();
+                keyType = args[0];
+                valueType = args[1];
             }
             for (int i = 0; i < count; i++)
             {
@@ -51,10 +54,19 @@ namespace BinaryJSON
                 var value = binaryJsonReader.Read(valueType, buffer);
                 if (result != null)
                 {
-                    result.Add(key, GetValue(value, valueType));
+                    result.Add(GetKey(key, keyType), GetValue(value, valueType));
                 }
             }
             return result;
+        }
+
+        private object GetKey(object key, Type type)
+        {
+            if (type.IsEnum)
+            {
+                return Enum.ToObject(type, key);
+            }
+            return Convert.ChangeType(key, type);
         }
 
         private object GetValue(object value, Type resultType)
