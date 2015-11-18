@@ -199,31 +199,31 @@ namespace BinaryJSON
             switch (code)
             {
                 case BinaryValue.BYTE:
-                    return buffer.ReadByte();
+                    return Convert.ChangeType(buffer.ReadByte(), resultType);
                 case BinaryValue.SBYTE:
-                    return buffer.ReadSByte();
+                    return Convert.ChangeType(buffer.ReadSByte(), resultType);
                 case BinaryValue.INT16:
-                    return buffer.ReadInt16();
+                    return Convert.ChangeType(buffer.ReadInt16(), resultType);
                 case BinaryValue.UINT16:
-                    return buffer.ReadUInt16();
+                    return Convert.ChangeType(buffer.ReadUInt16(), resultType);
                 case BinaryValue.INT32:
-                    return buffer.ReadInt32();
+                    return Convert.ChangeType(buffer.ReadInt32(), resultType);
                 case BinaryValue.UINT32:
-                    return buffer.ReadUInt32();
+                    return Convert.ChangeType(buffer.ReadUInt32(), resultType);
                 case BinaryValue.INT64:
-                    return buffer.ReadInt64();
+                    return Convert.ChangeType(buffer.ReadInt64(), resultType);
                 case BinaryValue.UINT64:
-                    return buffer.ReadUInt64();
+                    return Convert.ChangeType(buffer.ReadUInt64(), resultType);
                 case BinaryValue.FLOAT:
-                    return buffer.ReadSingle();
+                    return Convert.ChangeType(buffer.ReadSingle(), resultType);
                 case BinaryValue.BOOLEAN:
-                    return buffer.ReadBoolean();
+                    return Convert.ChangeType(buffer.ReadBoolean(), resultType);
                 case BinaryValue.DOUBLE:
-                    return buffer.ReadDouble();
+                    return Convert.ChangeType(buffer.ReadDouble(), resultType);
                 case BinaryValue.DECIMAL:
-                    return buffer.ReadDecimal();
+                    return Convert.ChangeType(buffer.ReadDecimal(), resultType);
                 case BinaryValue.CHAR:
-                    return buffer.ReadChar();
+                    return Convert.ChangeType(buffer.ReadChar(), resultType);
             }
             return null;
         }
