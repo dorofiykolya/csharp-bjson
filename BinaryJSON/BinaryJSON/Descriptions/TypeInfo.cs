@@ -85,7 +85,7 @@ namespace BinaryJSON
             {
                 TypeValue = TypeValue.List;
             }
-            else if (typeof(IDictionary).IsAssignableFrom(type) && ((generic = type.GetGenericArguments()[0]).IsPrimitive || generic.IsEnum || generic == typeof(string)))
+            else if (typeof(IDictionary).IsAssignableFrom(type) && type.IsGenericType && ((generic = type.GetGenericArguments()[0]).IsPrimitive || generic.IsEnum || generic == typeof(string)))
             {
                 TypeValue = TypeValue.Dictionary;
             }
@@ -106,8 +106,11 @@ namespace BinaryJSON
 
         public FieldInfo GetField(string name)
         {
-            FieldInfo result;
-            _fields.TryGetValue(name, out result);
+            FieldInfo result = null;
+            if (_fields != null)
+            {
+                _fields.TryGetValue(name, out result);
+            }
             return result;
         }
 

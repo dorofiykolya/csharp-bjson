@@ -82,8 +82,12 @@ namespace BinaryJSON
 
         private bool IsValidDictionary(Type type)
         {
-            var genericKey = type.GetGenericArguments()[0];
-            return genericKey.IsPrimitive || genericKey == typeof(string) || genericKey.IsEnum;
+            if (type.IsGenericType)
+            {
+                var genericKey = type.GetGenericArguments()[0];
+                return genericKey.IsPrimitive || genericKey == typeof (string) || genericKey.IsEnum;
+            }
+            return false;
         }
 
         private void WriteField(object key, BinaryWriter writer, byte code)
